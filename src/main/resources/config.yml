@@ -1,5 +1,5 @@
 messages:
-  no permission: "&6&l(!) You don't have permission!"
+  no permission: "&c&l(!) You don't have permission!"
   
 settings:
   stack size: 64
