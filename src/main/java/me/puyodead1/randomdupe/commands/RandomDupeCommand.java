@@ -25,7 +25,7 @@ public class RandomDupeCommand implements CommandExecutor {
 				CustomEnchant ce = CustomEnchant.valueOf(is);
 				EnchantRarity rarity = EnchantRarity.valueOf(is);
 				if(rarity != null || ce != null) {
-					is.setAmount(rdConfig.getInt("settings.stack size"));
+					is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
 					player.getInventory().addItem(is);
 				}
 				return true;
