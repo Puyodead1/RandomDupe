@@ -21,7 +21,7 @@ public class RandomDupeCommand implements CommandExecutor {
 		if (player != null) {
 			if (player.hasPermission("randomdupe.dupe")) {
 				// TODO: Dupe the book
-				ItemStack is = player.getInventory().getItemInMainHand().clone();
+				ItemStack is = player.getInventory().getItemInHand().clone();
 				CustomEnchant ce = CustomEnchant.valueOf(is);
 				EnchantRarity rarity = EnchantRarity.valueOf(is);
 				if(rarity != null || ce != null) {
