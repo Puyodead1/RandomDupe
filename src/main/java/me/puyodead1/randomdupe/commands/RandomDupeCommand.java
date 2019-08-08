@@ -23,7 +23,7 @@ public class RandomDupeCommand implements CommandExecutor {
 				// TODO: Dupe the book
 				ItemStack is = player.getInventory().getItemInHand().clone();
 				CustomEnchant ce = CustomEnchant.valueOf(is);
-				EnchantRarity rarity = EnchantRarity.valueOf(is);
+				EnchantRarity rarity = ce.valueOfEnchantRarity(is);
 				if(rarity != null || ce != null) {
 					is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
 					player.getInventory().addItem(is);

@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.puyodead1.randomdupe</groupId>
 	<artifactId>RandomDupe</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>RandomDupe</name>
 	<packaging>jar</packaging>
 
@@ -36,7 +36,7 @@
 		<dependency>
 			<groupId>me.randomhashtags</groupId>
 			<artifactId>randompackage</artifactId>
-			<version>16.3.3</version>
+			<version>16.4.2</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
