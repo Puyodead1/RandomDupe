@@ -11,20 +11,20 @@ import me.puyodead1.randomdupe.RandomDupe;
 import me.puyodead1.randomdupe.Utils;
 import me.randomhashtags.randompackage.addons.CustomEnchant;
 import me.randomhashtags.randompackage.addons.EnchantRarity;
+import me.randomhashtags.randompackage.utils.RPStorage;
 
-public class RandomDupeCommand implements CommandExecutor {
+public class RandomDupeCommand extends RPStorage implements CommandExecutor {
 
 	private FileConfiguration rdConfig = RandomDupe.getPlugin().getConfig();
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		final Player player = sender instanceof Player ? (Player) sender : null;
 		if (player != null) {
 			if (player.hasPermission("randomdupe.dupe")) {
-				// TODO: Dupe the book
 				ItemStack is = player.getInventory().getItemInHand().clone();
 				CustomEnchant ce = CustomEnchant.valueOf(is);
-				EnchantRarity rarity = ce.valueOfEnchantRarity(is);
-				if(rarity != null || ce != null) {
+				EnchantRarity rarity = valueOfEnchantRarity(is);
+				if (rarity != null || ce != null) {
 					is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
 					player.getInventory().addItem(is);
 				}
