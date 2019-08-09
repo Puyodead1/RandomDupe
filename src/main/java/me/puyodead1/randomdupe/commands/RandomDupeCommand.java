@@ -27,13 +27,20 @@ public class RandomDupeCommand extends RPStorage implements CommandExecutor {
 				ItemStack is = player.getInventory().getItemInHand().clone();
 				CustomEnchant ce = CustomEnchant.valueOf(is);
 				EnchantRarity rarity = valueOfEnchantRarity(is);
-				if (rarity != null || ce != null) {
-					if(!blacklist.contains(ce != null ? ce.getIdentifier() : rarity.getIdentifier())) {
-						is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
-						player.getInventory().addItem(is);
-					}else {
-						player.sendMessage(Utils.formatString(rdConfig.getString("messages.not dupeable")));
-						return false;
+				if (rarity != null && !rdConfig.getBoolean("settings.allow duping rarity books")
+						|| ce != null && !rdConfig.getBoolean("settings.allow duping enchant books")) {
+					player.sendMessage(Utils.formatString(rdConfig.getString("messages.not dupable")));
+				} else {
+
+					// TODO: This if statment may not be needed
+					if (rarity != null || ce != null) {
+						if (!blacklist.contains(ce != null ? ce.getIdentifier() : rarity.getIdentifier())) {
+							is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
+							player.getInventory().addItem(is);
+						} else {
+							player.sendMessage(Utils.formatString(rdConfig.getString("messages.not dupable")));
+							return false;
+						}
 					}
 				}
 				return true;

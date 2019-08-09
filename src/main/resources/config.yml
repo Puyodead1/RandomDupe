@@ -1,10 +1,12 @@
 messages:
   no permission: "&c&l(!) You don't have permission!"
-  not dupeable: "&c&l(!) Not Dupeable."
+  not dupable: "&c&l(!) Not Dupable."
   
 settings:
   stack size: 64
+  allow duping rarity books: true
+  allow duping enchant books: true
   
 blacklist:
-  - "RAGE"
-  - "OVERLOAD"
+  - "RAGE" # Prevents duping the rage enchant book
+  - "ELITE" # Prevents duping the (unopened) elite enchantment book
