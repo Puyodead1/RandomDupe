@@ -16,9 +16,16 @@ For 1.8.x - Use [Latest](http://ci.puyodead1-development.me/job/RandomDupe/)
   
 ```
 messages:
-  no permission: "&6&l(!) You don't have permission!"
+  no permission: "&c&l(!) You don't have permission!"
+  not dupable: "&c&l(!) Not Dupable."
   
 settings:
   stack size: 64
+  allow duping rarity books: true
+  allow duping enchant books: true
+  
+blacklist:
+  - "RAGE" # Prevents duping the rage enchant book
+  - "ELITE" # Prevents duping the (unopened) elite enchantment book
 ```
 </details>
