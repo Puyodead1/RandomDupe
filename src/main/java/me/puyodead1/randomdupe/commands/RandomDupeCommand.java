@@ -1,5 +1,7 @@
 package me.puyodead1.randomdupe.commands;
 
+import java.util.List;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +18,7 @@ import me.randomhashtags.randompackage.utils.RPStorage;
 public class RandomDupeCommand extends RPStorage implements CommandExecutor {
 
 	private FileConfiguration rdConfig = RandomDupe.getPlugin().getConfig();
+	private List<String> blacklist = rdConfig.getStringList("blacklist");
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		final Player player = sender instanceof Player ? (Player) sender : null;
@@ -25,8 +28,13 @@ public class RandomDupeCommand extends RPStorage implements CommandExecutor {
 				CustomEnchant ce = CustomEnchant.valueOf(is);
 				EnchantRarity rarity = valueOfEnchantRarity(is);
 				if (rarity != null || ce != null) {
-					is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
-					player.getInventory().addItem(is);
+					if(!blacklist.contains(ce != null ? ce.getIdentifier() : rarity.getIdentifier())) {
+						is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
+						player.getInventory().addItem(is);
+					}else {
+						player.sendMessage(Utils.formatString(rdConfig.getString("messages.not dupeable")));
+						return false;
+					}
 				}
 				return true;
 			} else {

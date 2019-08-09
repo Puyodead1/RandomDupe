@@ -1,5 +1,10 @@
 messages:
   no permission: "&c&l(!) You don't have permission!"
+  not dupeable: "&c&l(!) Not Dupeable."
   
 settings:
   stack size: 64
+  
+blacklist:
+  - "RAGE"
+  - "OVERLOAD"
