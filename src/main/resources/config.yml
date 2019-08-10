@@ -1,6 +1,9 @@
 messages:
   no permission: "&c&l(!) You don't have permission!"
-  not dupable: "&c&l(!) Not Dupable."
+  not dupable: "&c&l(!) You cannot Dupe this item!"
+  only certain rarity books are dupable: "&c&l(!) &cOnly certain rarity books are dupable!"
+  only certain enchant books are dupable: "&c&l(!) &cOnly certain enchant books are dupable!"
+  success: "&a&l(!) &aDupe Successful!"
   
 settings:
   stack size: 64

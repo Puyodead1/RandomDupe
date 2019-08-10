@@ -27,9 +27,15 @@ public class RandomDupeCommand extends RPStorage implements CommandExecutor {
 				ItemStack is = player.getInventory().getItemInHand().clone();
 				CustomEnchant ce = CustomEnchant.valueOf(is);
 				EnchantRarity rarity = valueOfEnchantRarity(is);
-				if (rarity != null && !rdConfig.getBoolean("settings.allow duping rarity books")
-						|| ce != null && !rdConfig.getBoolean("settings.allow duping enchant books")) {
+				if (rarity != null && !rdConfig.getBoolean("settings.allow duping rarity books")) {
+					player.sendMessage(Utils.formatString(rdConfig.getString("messages.only certain rarity books are dupable")));
+					return true;
+				} else if(ce != null && !rdConfig.getBoolean("settings.allow duping enchant books")) {
+					player.sendMessage(Utils.formatString(rdConfig.getString("messages.only certain enchant books are dupable")));
+					return true;
+				}else if(rarity == null && ce == null) {
 					player.sendMessage(Utils.formatString(rdConfig.getString("messages.not dupable")));
+					return true;
 				} else {
 
 					// TODO: This if statment may not be needed
@@ -37,9 +43,12 @@ public class RandomDupeCommand extends RPStorage implements CommandExecutor {
 						if (!blacklist.contains(ce != null ? ce.getIdentifier() : rarity.getIdentifier())) {
 							is.setAmount(rdConfig.getInt("settings.stack size") - player.getItemInHand().getAmount());
 							player.getInventory().addItem(is);
+							
+							player.sendMessage(Utils.formatString(rdConfig.getString("messages.success")));
+							return true;
 						} else {
 							player.sendMessage(Utils.formatString(rdConfig.getString("messages.not dupable")));
-							return false;
+							return true;
 						}
 					}
 				}
