@@ -8,12 +8,15 @@ before_deploy:
   # Set up git user name and tag this commit
   - git config --local user.name "Puyodead1"
   - git config --local user.email "23562356riley@gmail.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
+  - export RELEASE_ARTIFACT_FILE=$(ls *.jar)
+  - echo "deploying $RELEASE_ARTIFACT_FILE to GitHub releases"
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-  file: target/*.jar
+  file_glob: true
+  file: "${RELEASE_ARTIFACT_FILE}"
   skip_cleanup: true
 
 after_success:
