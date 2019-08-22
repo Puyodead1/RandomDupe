@@ -1,5 +1,6 @@
 package me.puyodead1.randomdupe.commands;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,17 +22,19 @@ public class IdentifierCommand extends Utils implements CommandExecutor {
 		if (player != null) {
 			if (player.hasPermission("randomdupe.identifier")) {
 				final ItemStack itemInHand = player.getItemInHand();
-				final String identifier = getIdentifier(itemInHand);
+				if(itemInHand.getType() != Material.AIR) {
+					final String identifier = getIdentifier(itemInHand);
 
-				if (!Strings.isNullOrEmpty(identifier)) {
-					player.sendMessage(
-							formatString(rdConfig.getString("messages.identifier").replace("{IDENTIFIER}", identifier)
-									.replace("{ITEM_DISPLAYNAME}", itemInHand.getItemMeta().getDisplayName())));
-					return true;
-				} else {
-					player.sendMessage(formatString(rdConfig.getString("messages.no identifier")
-							.replace("{ITEM_DISPLAYNAME}", itemInHand.getItemMeta().getDisplayName())));
-					return true;
+					if (!Strings.isNullOrEmpty(identifier)) {
+						player.sendMessage(
+								formatString(rdConfig.getString("messages.identifier").replace("{IDENTIFIER}", identifier)
+										.replace("{ITEM_DISPLAYNAME}", itemInHand.getItemMeta().getDisplayName())));
+						return true;
+					} else {
+						player.sendMessage(formatString(rdConfig.getString("messages.no identifier")
+								.replace("{ITEM_DISPLAYNAME}", itemInHand.getItemMeta().getDisplayName())));
+						return true;
+					}
 				}
 			} else {
 				player.sendMessage(formatString(rdConfig.getString("messages.no permission")));
