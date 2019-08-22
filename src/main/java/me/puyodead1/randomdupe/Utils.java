@@ -19,27 +19,21 @@ public class Utils extends RPStorage {
 	private FileConfiguration rdConfig = RandomDupe.getPlugin().getConfig();
 	private List<String> blacklist = rdConfig.getStringList("blacklist");
 
+	
+	/**
+	 * Formats text with chat colors
+	 * @param text
+	 * @return Formatted text
+	 */
 	public static String formatString(String text) {
 		return ChatColor.translateAlternateColorCodes('&', text);
 	}
 
-	public WhiteScrolls getWhiteScrolls() {
-		return new WhiteScrolls();
-	}
-
-	public BlackScrolls getBlackScrolls() {
-		return new BlackScrolls();
-	}
-
-	public TransmogScrolls getTransmogScrolls() {
-		return new TransmogScrolls();
-	}
-
 	/**
-	 * Returns type of itemstack
+	 * Returns type of ItemStack
 	 * 
 	 * @param item
-	 * @return Type
+	 * @return enum type of item
 	 */
 	public TYPES getType(ItemStack item) {
 		if (item != null) {
@@ -50,7 +44,7 @@ public class Utils extends RPStorage {
 				return TYPES.RARITY;
 			} else if (getWhiteScrolls().valueOf(item) != null) {
 				return TYPES.WHITE_SCROLL;
-//			} else if(getBlackScrolls().valueOf(null) != null) {
+//			} else if(blackscrolls. != null) {
 //				return TYPES.BLACK_SCROLL;
 			} else if (getTransmogScrolls().valueOf(item) != null) {
 				return TYPES.TRANSMOG_SCROLL;
@@ -82,7 +76,7 @@ public class Utils extends RPStorage {
 	/**
 	 * Returns the string Identifier associated with the item type
 	 * @param item
-	 * @return String identifier
+	 * @return identifier or null if invalid
 	 */
 	public String getIdentifier(ItemStack item) {
 
@@ -101,6 +95,12 @@ public class Utils extends RPStorage {
 		}
 	}
 	
+	
+	/**
+	 * Check if an item is blacklisted
+	 * @param item
+	 * @return Boolean of blacklist status or null if invalid
+	 */
 	public Boolean isBlacklisted(ItemStack item) {
 		if (CustomEnchant.valueOf(item) != null) {
 			return blacklist.contains("ENCHANT:" + CustomEnchant.valueOf(item).getIdentifier());
@@ -115,5 +115,17 @@ public class Utils extends RPStorage {
 		} else {
 			return null;
 		}
+	}
+	
+	public WhiteScrolls getWhiteScrolls() {
+		return new WhiteScrolls();
+	}
+
+	public BlackScrolls getBlackScrolls() {
+		return new BlackScrolls();
+	}
+
+	public TransmogScrolls getTransmogScrolls() {
+		return new TransmogScrolls();
 	}
 }
