@@ -1,14 +1,17 @@
 messages:
   not dupable: # Valid placeholders: {ENCHANT_NAME}, {RARITY_NAME}, {DUST_NAME}
-    ENCHANT: "&c&l(!) &c&l{ENCHANT_NAME} &cis not dupable!"
-    RARITY: "&c&l(!) &c&l{RARITY_NAME} &cis not dupable!"
-    WHITE_SCROLL: "&c&l(!) &c&lWhite Scrolls &care not dupable!"
-    BLACK_SCROLL: "&c&l(!) &c&lBlack Scrolls &care not dupable!"
-    TRANSMOG_SCROLL: "&c&l(!) &c&lTransmog Scrolls &care not dupable!"
-    MAGIC_DUST: "&c&l(!) &c&l{DUST_NAME} &cis not dupable!"
+    ENCHANT: "&c&l(!) {ENCHANT_NAME} &cenchant is not dupable!"
+    RARITY: "&c&l(!) {RARITY_NAME} &crarity books are not dupable!"
+    WHITE_SCROLL: "&c&l(!) White Scrolls &care not dupable!"
+    BLACK_SCROLL: "&c&l(!) Black Scrolls &care not dupable!"
+    TRANSMOG_SCROLL: "&c&l(!) Transmog Scrolls &care not dupable!"
+    MAGIC_DUST: "&c&l(!) {DUST_NAME} &cis not dupable!"
   no permission: "&c&l(!) &cYou don't have permission!"
-  item not dupable: "&c&l(!) &c&l{ITEM_TYPE} &cis not dupable!" # Valid placeholders: {ITEM_DISPLAYNAME} and {ITEM_TYPE}
-  dupe success: "&a&l(!) &a&l{ITEM_DISPLAYNAME} &aduped successfully!" # Valid placeholders: {ITEM_DISPLAYNAME} and {ITEM_TYPE}
+  item not dupable: "&c&l(!) {ITEM_TYPE} &cis not dupable!" # Valid placeholders: {ITEM_DISPLAYNAME} and {ITEM_TYPE}
+  dupe success: "&a&l(!) {ITEM_DISPLAYNAME} &aduped successfully!" # Valid placeholders: {ITEM_DISPLAYNAME} and {ITEM_TYPE}
+  cannot dupe air: "&c&l(!) &cYou can't dupe air!"
+  identifier: "&eIdentifier for item &6&l{ITEM_DISPLAYNAME} &eis &6&l{IDENTIFIER}&e."
+  no identifier: "&c&l(!) {ITEM_DISPLAYNAME} &cdoes not have an identifier!"
   
 settings:
   stack size: 64
@@ -21,6 +24,6 @@ settings:
     MAGIC_DUST: false # blacklist certain dusts with the blacklist below
   
 blacklist: # All names in this list must be UPPERCASE
-  - "RAGE" # Prevents duping the rage enchant book
-  - "ELITE" # Prevents duping the (unopened) elite enchantment book
-  - "ELITE MAGIC DUST"
+  - "ENCHANT:RAGE" # Prevents duping the rage enchant book
+  - "RARITY:ELITE" # Prevents duping the (unopened) elite enchantment book
+  - "DUST:ELITE_REGULAR" # Prevents duping regular elite magic dust

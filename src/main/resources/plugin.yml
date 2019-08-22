@@ -1,10 +1,12 @@
 name: RandomDupe
 version: ${project.version}
 author: Puyodead1
-api-version: 1.13
+#api-version: 1.13
 description: RandomDupe
 main: me.puyodead1.randomdupe.RandomDupe
 depend: [RandomPackage]
 commands:
   dupe:
     description: Main command
+  identifier:
+    description: Get identifier of item in hand

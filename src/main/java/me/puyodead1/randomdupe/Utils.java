@@ -1,5 +1,7 @@
 package me.puyodead1.randomdupe;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -15,6 +17,7 @@ import me.randomhashtags.randompackage.utils.RPStorage;
 public class Utils extends RPStorage {
 
 	private FileConfiguration rdConfig = RandomDupe.getPlugin().getConfig();
+	private List<String> blacklist = rdConfig.getStringList("blacklist");
 
 	public static String formatString(String text) {
 		return ChatColor.translateAlternateColorCodes('&', text);
@@ -36,7 +39,7 @@ public class Utils extends RPStorage {
 	 * Returns type of itemstack
 	 * 
 	 * @param item
-	 * @return
+	 * @return Type
 	 */
 	public TYPES getType(ItemStack item) {
 		if (item != null) {
@@ -70,6 +73,47 @@ public class Utils extends RPStorage {
 	public void dupe(Player player, ItemStack item) {
 		item.setAmount(rdConfig.getInt("settings.stack size"));
 
-		player.sendMessage(formatString(rdConfig.getString("messages.dupe success")));
+		player.sendMessage(formatString(
+				rdConfig.getString("messages.dupe success").replace("{ITEM_TYPE}", item.getType().toString())
+						.replace("{ITEM_DISPLAYNAME}", item.getItemMeta().getDisplayName())));
+	}
+
+	
+	/**
+	 * Returns the string Identifier associated with the item type
+	 * @param item
+	 * @return String identifier
+	 */
+	public String getIdentifier(ItemStack item) {
+
+		if (CustomEnchant.valueOf(item) != null) {
+			return CustomEnchant.valueOf(item).getIdentifier();
+		} else if (valueOfEnchantRarity(item) != null) {
+			return valueOfEnchantRarity(item).getIdentifier();
+		} else if (getWhiteScrolls().valueOf(item) != null) {
+			return getWhiteScrolls().valueOf(item).getIdentifier();
+		} else if (getTransmogScrolls().valueOf(item) != null) {
+			return getTransmogScrolls().valueOf(item).getIdentifier();
+		} else if (MagicDust.valueOf(item) != null) {
+			return MagicDust.valueOf(item).getIdentifier();
+		} else {
+			return null;
+		}
+	}
+	
+	public Boolean isBlacklisted(ItemStack item) {
+		if (CustomEnchant.valueOf(item) != null) {
+			return blacklist.contains("ENCHANT:" + CustomEnchant.valueOf(item).getIdentifier());
+		} else if (valueOfEnchantRarity(item) != null) {
+			return blacklist.contains("RARITY:" + valueOfEnchantRarity(item).getIdentifier());
+		} else if (getWhiteScrolls().valueOf(item) != null) {
+			return blacklist.contains(getWhiteScrolls().valueOf(item).getIdentifier());
+		} else if (getTransmogScrolls().valueOf(item) != null) {
+			return blacklist.contains(getTransmogScrolls().valueOf(item).getIdentifier());
+		} else if (MagicDust.valueOf(item) != null) {
+			return blacklist.contains("DUST:" + MagicDust.valueOf(item).getIdentifier());
+		} else {
+			return null;
+		}
 	}
 }
