@@ -1,0 +1,5 @@
+package me.puyodead1.randomdupe;
+
+public enum TYPES {
+	ENCHANT, RARITY, WHITE_SCROLL, BLACK_SCROLL, TRANSMOG_SCROLL, MAGIC_DUST, INVALID
+}

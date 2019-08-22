@@ -1,15 +1,26 @@
 messages:
+  not dupable: # Valid placeholders: {ENCHANT_NAME}, {RARITY_NAME}, {DUST_NAME}
+    ENCHANT: "&c&l(!) &c&l{ENCHANT_NAME} &cis not dupable!"
+    RARITY: "&c&l(!) &c&l{RARITY_NAME} &cis not dupable!"
+    WHITE_SCROLL: "&c&l(!) &c&lWhite Scrolls &care not dupable!"
+    BLACK_SCROLL: "&c&l(!) &c&lBlack Scrolls &care not dupable!"
+    TRANSMOG_SCROLL: "&c&l(!) &c&lTransmog Scrolls &care not dupable!"
+    MAGIC_DUST: "&c&l(!) &c&l{DUST_NAME} &cis not dupable!"
   no permission: "&c&l(!) &cYou don't have permission!"
-  not dupable: "&c&l(!) &cYou cannot Dupe this item!"
-  only certain rarity books are dupable: "&c&l(!) &cOnly certain rarity books are dupable!"
-  only certain enchant books are dupable: "&c&l(!) &cOnly certain enchant books are dupable!"
-  success: "&a&l(!) &aDupe Successful!"
+  item not dupable: "&c&l(!) &c&l{ITEM_TYPE} &cis not dupable!" # Valid placeholders: {ITEM_DISPLAYNAME} and {ITEM_TYPE}
+  dupe success: "&a&l(!) &a&l{ITEM_DISPLAYNAME} &aduped successfully!" # Valid placeholders: {ITEM_DISPLAYNAME} and {ITEM_TYPE}
   
 settings:
   stack size: 64
-  allow duping rarity books: true
-  allow duping enchant books: true
+  allow duping:
+    ENCHANT: true
+    RARITY: true
+    WHITE_SCROLL: false
+    BLACK_SCROLL: false
+    TRANSMOG_SCROLL: false
+    MAGIC_DUST: false # blacklist certain dusts with the blacklist below
   
-blacklist:
+blacklist: # All names in this list must be UPPERCASE
   - "RAGE" # Prevents duping the rage enchant book
   - "ELITE" # Prevents duping the (unopened) elite enchantment book
+  - "ELITE MAGIC DUST"
