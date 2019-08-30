@@ -16,14 +16,14 @@ public class RandomDupe extends JavaPlugin {
 
 	public void onEnable() {
 		final long started = System.currentTimeMillis();
-
-		Updater spu = new Updater(this, "http://185.230.160.95/plugins/phd/phd.html");
-		spu.enableOut();
-		if(spu.needsUpdate())
-			spu.update();
-
 		instance = this;
-		
+
+		Updater updater = new Updater(this);
+		updater.enableOut();
+		if(updater.needsUpdate()) {
+		    updater.update();
+        }
+
 		Bukkit.getConsoleSender().sendMessage(Utils
 				.formatString("&d[&bRandomDupe&d] &dRandomDupe version: &e" + getDescription().getVersion()));
 		
