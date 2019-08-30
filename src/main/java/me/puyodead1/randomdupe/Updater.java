@@ -62,19 +62,19 @@ public class Updater {
             JsonElement root = parser.parse(new InputStreamReader(con.getInputStream()));
             String version = root.getAsJsonObject().get("latest_version").getAsString();
 
-            if (newVersionAvailiable(plugin.getDescription().getVersion(), version.replaceAll("[a-zA-z ]", ""))) {
-                if (out) {
-                    plugin.getLogger().log(Level.INFO, "New Version found: {0}", version.replaceAll("[a-zA-z ]", ""));
-                }
+               if (newVersionAvailiable(plugin.getDescription().getVersion(), version.replaceAll("[a-zA-z ]", ""))) {
+                   if (out) {
+                       plugin.getLogger().log(Level.INFO, "New Version found: {0}", version.replaceAll("[a-zA-z ]", ""));
+                   }
 
-                return true;
-            } else {
-                if (out) {
-                    plugin.getLogger().log(Level.INFO, "No new version found.");
-                }
-            }
+                   return true;
+               } else {
+                   if (out) {
+                       plugin.getLogger().log(Level.INFO, "No new version found.");
+                   }
+               }
 
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             plugin.getLogger().log(Level.WARNING, "Error in checking update for ''{0}''!", plugin.getName());
             plugin.getLogger().log(Level.WARNING, "Error: ", e);
         }

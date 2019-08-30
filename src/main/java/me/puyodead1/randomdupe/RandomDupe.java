@@ -18,11 +18,11 @@ public class RandomDupe extends JavaPlugin {
 		final long started = System.currentTimeMillis();
 		instance = this;
 
-		Updater updater = new Updater(this);
-		updater.enableOut();
-		if(updater.needsUpdate()) {
-		    updater.update();
-        }
+//		Updater updater = new Updater(this);
+//		updater.enableOut();
+//		if(updater.needsUpdate()) {
+//		    updater.update();
+//        }
 
 		Bukkit.getConsoleSender().sendMessage(Utils
 				.formatString("&d[&bRandomDupe&d] &dRandomDupe version: &e" + getDescription().getVersion()));
