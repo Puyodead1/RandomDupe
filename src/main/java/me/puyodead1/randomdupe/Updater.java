@@ -62,8 +62,6 @@ public class Updater {
             JsonElement root = parser.parse(new InputStreamReader(con.getInputStream()));
             String version = root.getAsJsonObject().get("latest_version").getAsString();
 
-            plugin.getLogger().log(Level.INFO, version);
-
             if (newVersionAvailiable(plugin.getDescription().getVersion(), version.replaceAll("[a-zA-z ]", ""))) {
                 if (out) {
                     plugin.getLogger().log(Level.INFO, "New Version found: {0}", version.replaceAll("[a-zA-z ]", ""));
@@ -92,28 +90,7 @@ public class Updater {
      * @return if it is newer
      */
     public boolean newVersionAvailiable(String oldv, String newv) {
-        if (oldv != null && newv != null) {
-            oldv = oldv.replace('.', '_');
-            newv = newv.replace('.', '_');
-            if (oldv.split("_").length != 0 && oldv.split("_").length != 1 && newv.split("_").length != 0 && newv.split("_").length != 1) {
-
-                int vnum = Integer.valueOf(oldv.split("_")[0]);
-                int vsec = Integer.valueOf(oldv.split("_")[1]);
-
-                int newvnum = Integer.valueOf(newv.split("_")[0]);
-                int newvsec = Integer.valueOf(newv.split("_")[1]);
-                if (newvnum > vnum) {
-                    return true;
-                }
-
-                if (newvnum == vnum) {
-                    if (newvsec > vsec) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+        return !oldv.equals(newv);
     }
 
     /**
@@ -134,7 +111,7 @@ public class Updater {
                     plugin.getLogger().log(Level.INFO, "Trying to download from: " + downloadURL);
                 }
                 in = new BufferedInputStream(download.openStream());
-                fout = new FileOutputStream("plugins/" + plugin.getDescription().getName());
+                fout = new FileOutputStream("plugins/" + downloadURL.split("/")[downloadURL.split("/").length - 1]);
 
                 final byte data[] = new byte[1024];
                 int count;
