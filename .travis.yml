@@ -5,12 +5,14 @@ cache:
 script: mvn clean package
 
 before_deploy:
+  if: tag
   # Set up git user name and tag this commit
   - git config --local user.name "Puyodead1"
   - git config --local user.email "23562356riley@gmail.com"
-  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
+  # - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
   - git tag $TRAVIS_TAG
 deploy:
+  if: tag
   provider: releases
   api_key: $GITHUB_TOKEN
   file_glob: true
@@ -21,6 +23,7 @@ after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh success $WEBHOOK_URL
+  
 after_failure:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
