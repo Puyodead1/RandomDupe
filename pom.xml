@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.puyodead1.randomdupe</groupId>
 	<artifactId>RandomDupe</artifactId>
-	<version>1.0.10</version>
+	<version>1.0.11</version>
 	<name>RandomDupe</name>
 	<packaging>jar</packaging>
 	<repositories>
@@ -16,16 +16,6 @@
 		<repository>
 			<id>bungeecord-repo</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-		</repository>
-		<repository>
-			<id>Puyodead1-private</id>
-			<url>https://packagecloud.io/Puyodead1/private/maven2</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
 		</repository>
 	</repositories>
 	<dependencies>
@@ -38,7 +28,7 @@
 		<dependency>
 			<groupId>me.randomhashtags</groupId>
 			<artifactId>randompackage</artifactId>
-			<version>16.4.4</version>
+			<version>16.5.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
@@ -82,6 +72,6 @@
 				</includes>
 			</resource>
 		</resources>
-		<finalName>${project.name}</finalName>
+		<finalName>${project.name}-${project.version}</finalName>
 	</build>
 </project>

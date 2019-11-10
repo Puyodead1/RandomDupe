@@ -8,8 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import me.randomhashtags.randompackage.RandomPackageAPI;
-import me.randomhashtags.randompackage.api.addons.WhiteScrolls;
-import me.randomhashtags.randompackage.utils.RPStorage;
+import me.randomhashtags.randompackage.api.addon.WhiteScrolls;
+import me.randomhashtags.randompackage.util.RPStorage;
+
 
 public class Utils extends RPStorage {
 
@@ -34,7 +35,7 @@ public class Utils extends RPStorage {
 	 */
 	public TYPES getType(ItemStack item) {
 		if (item != null) {
-			if (RandomPackageAPI.api.valueOfCustomEnchant(item) != null) {
+			if (RandomPackageAPI.valueOfCustomEnchant(item) != null) {
 				return TYPES.ENCHANT;
 			} else if (valueOfEnchantRarity(item) != null) {
 				return TYPES.RARITY;
@@ -76,8 +77,8 @@ public class Utils extends RPStorage {
 	 */
 	public String getIdentifier(ItemStack item) {
 
-		if (RandomPackageAPI.api.valueOfCustomEnchant(item) != null) {
-			return RandomPackageAPI.api.valueOfCustomEnchant(item).getIdentifier();
+		if (RandomPackageAPI.valueOfCustomEnchant(item) != null) {
+			return RandomPackageAPI.valueOfCustomEnchant(item).getIdentifier();
 		} else if (valueOfEnchantRarity(item) != null) {
 			return valueOfEnchantRarity(item).getIdentifier();
 		} else if (WhiteScrolls.getWhiteScrolls().valueOf(item) != null) {
@@ -100,8 +101,8 @@ public class Utils extends RPStorage {
 	 * @return Boolean of blacklist status or null if invalid
 	 */
 	public Boolean isBlacklisted(ItemStack item) {
-		if (RandomPackageAPI.api.valueOfCustomEnchant(item) != null) {
-			return blacklist.contains("ENCHANT:" + RandomPackageAPI.api.valueOfCustomEnchant(item).getIdentifier());
+		if (RandomPackageAPI.valueOfCustomEnchant(item) != null) {
+			return blacklist.contains("ENCHANT:" + RandomPackageAPI.valueOfCustomEnchant(item).getIdentifier());
 		} else if (valueOfEnchantRarity(item) != null) {
 			return blacklist.contains("RARITY:" + valueOfEnchantRarity(item).getIdentifier());
 		} else if (RandomPackageAPI.api.valueOfTransmogScroll(item) != null) {
