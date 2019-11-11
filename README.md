@@ -29,3 +29,4 @@ blacklist:
   - "ELITE" # Prevents duping the (unopened) elite enchantment book
 ```
 </details>
+https://discord.gg/tMzrSxQ
