@@ -38,7 +38,7 @@ public class RandomDupeCommand extends Utils implements CommandExecutor {
 					} else {
 						player.sendMessage(formatString(rdConfig.getString("messages.item not dupable")
 								.replace("{ITEM_TYPE}", itemInHand.getType().toString())
-								.replace("{ITEM_DISPLAYNAME}", itemInHand.getItemMeta().getDisplayName())));
+								.replace("{ITEM_DISPLAYNAME}", itemInHand.getItemMeta().hasDisplayName() ? itemInHand.getItemMeta().getDisplayName() : itemInHand.getType().name())));
 						return true;
 					}
 				} else {

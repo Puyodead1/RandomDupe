@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.puyodead1.randomdupe</groupId>
 	<artifactId>RandomDupe</artifactId>
-	<version>1.0.12</version>
+	<version>1.0.13</version>
 	<name>RandomDupe</name>
 	<packaging>jar</packaging>
 	<repositories>
