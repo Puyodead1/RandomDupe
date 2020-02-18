@@ -1,5 +1,6 @@
 package me.puyodead1.randomdupe;
 
+import me.randomhashtags.randompackage.RandomPackageAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,8 @@ public class RandomDupe extends JavaPlugin {
 	public static RandomDupe getPlugin() {
 		return instance;
 	}
+
+	public static RandomPackageAPI rpapi = RandomPackageAPI.api;
 
 	public void onEnable() {
 		final long started = System.currentTimeMillis();
