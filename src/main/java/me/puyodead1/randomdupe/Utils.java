@@ -35,9 +35,9 @@ public class Utils extends RPStorage {
 	 */
 	public TYPES getType(ItemStack item) {
 		if (item != null) {
-			if (RandomDupe.rpapi.valueOfCustomEnchant(item) != null) {
+			if (RandomPackageAPI.api.valueOfCustomEnchant(item) != null) {
 				return TYPES.ENCHANT;
-			} else if (RandomDupe.rpapi.valueOfCustomEnchantRarity(item) != null) {
+			} else if (RandomPackageAPI.api.valueOfCustomEnchantRarity(item) != null) {
 				return TYPES.RARITY;
 			} else if (WhiteScrolls.getWhiteScrolls().valueOf(item) != null) {
 				return TYPES.WHITE_SCROLL;
@@ -77,10 +77,10 @@ public class Utils extends RPStorage {
 	 */
 	public String getIdentifier(ItemStack item) {
 
-		if (RandomDupe.rpapi.valueOfCustomEnchant(item) != null) {
-			return RandomDupe.rpapi.valueOfCustomEnchantRarity(item).getIdentifier();
-		} else if (RandomDupe.rpapi.valueOfCustomEnchantRarity(item) != null) {
-			return RandomDupe.rpapi.valueOfCustomEnchantRarity(item).getIdentifier();
+		if (RandomPackageAPI.api.valueOfCustomEnchant(item) != null) {
+			return RandomPackageAPI.api.valueOfCustomEnchantRarity(item).getIdentifier();
+		} else if (RandomPackageAPI.api.valueOfCustomEnchantRarity(item) != null) {
+			return RandomPackageAPI.api.valueOfCustomEnchantRarity(item).getIdentifier();
 		} else if (WhiteScrolls.getWhiteScrolls().valueOf(item) != null) {
 			return WhiteScrolls.getWhiteScrolls().valueOf(item).getIdentifier();
 		} else if (RandomPackageAPI.api.valueOfTransmogScroll(item) != null) {
@@ -101,10 +101,10 @@ public class Utils extends RPStorage {
 	 * @return Boolean of blacklist status or null if invalid
 	 */
 	public Boolean isBlacklisted(ItemStack item) {
-		if (RandomDupe.rpapi.valueOfCustomEnchant(item) != null) {
-			return blacklist.contains("ENCHANT:" + RandomDupe.rpapi.valueOfCustomEnchant(item).getIdentifier());
-		} else if (RandomDupe.rpapi.valueOfCustomEnchantRarity(item) != null) {
-			return blacklist.contains("RARITY:" + RandomDupe.rpapi.valueOfCustomEnchantRarity(item).getIdentifier());
+		if (RandomPackageAPI.api.valueOfCustomEnchant(item) != null) {
+			return blacklist.contains("ENCHANT:" + RandomPackageAPI.api.valueOfCustomEnchant(item).getIdentifier());
+		} else if (RandomPackageAPI.api.valueOfCustomEnchantRarity(item) != null) {
+			return blacklist.contains("RARITY:" + RandomPackageAPI.api.valueOfCustomEnchantRarity(item).getIdentifier());
 		} else if (RandomPackageAPI.api.valueOfTransmogScroll(item) != null) {
 			return blacklist.contains(RandomPackageAPI.api.valueOfTransmogScroll(item).getIdentifier());
 		} else if (RandomPackageAPI.api.valueOfMagicDust(item) != null) {

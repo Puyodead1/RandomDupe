@@ -15,8 +15,6 @@ public class RandomDupe extends JavaPlugin {
 		return instance;
 	}
 
-	public static RandomPackageAPI rpapi = RandomPackageAPI.api;
-
 	public void onEnable() {
 		final long started = System.currentTimeMillis();
 		instance = this;
